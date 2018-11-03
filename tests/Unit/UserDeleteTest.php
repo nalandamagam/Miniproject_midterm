@@ -2,13 +2,13 @@
 
 namespace Tests\Unit;
 
+use App\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Car;
 
-class CarInsertTest extends TestCase
+class UserDeleteTest extends TestCase
 {
     use DatabaseTransactions;
     /**
@@ -18,11 +18,7 @@ class CarInsertTest extends TestCase
      */
     public function testExample()
     {
-        $car = new Car();
-        $car->make = 'toyota';
-        $car->model = 'camry';
-        $car->year = 2017;
-        $car->user_id=51;
-        $this->assertTrue($car->save());
+        $user = User::find(1);
+        $this->assertTrue($user->delete());
     }
 }
