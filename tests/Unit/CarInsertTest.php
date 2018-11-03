@@ -5,10 +5,12 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Car;
 
-class CarYearTest extends TestCase
+class CarInsertTest extends TestCase
 {
+    use DatabaseTransactions;
     /**
      * A basic test example.
      *
@@ -16,7 +18,10 @@ class CarYearTest extends TestCase
      */
     public function testExample()
     {
-        $car = Car::find(1);
-        $this->assertInternalType("int", $car->id);
+        $car = new Car();
+        $car->make = 'toyota';
+        $car->model = 'camry';
+        $car->year = 2017;
+        $this->assertTrue($car->save());
     }
 }
